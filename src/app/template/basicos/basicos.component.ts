@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-basicos',
@@ -13,4 +14,8 @@ export class BasicosComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  guardar(formulario: NgForm): void {
+    console.log('Submit hecho');
+    console.log('%cbasicos.component.ts line:18 formulario', 'color: #007acc;', formulario.value);
+  }
 }
