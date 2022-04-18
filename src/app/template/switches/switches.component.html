@@ -9,7 +9,10 @@
                 <input 
                     class="form-check-input" 
                     type="radio" 
+                    value="M"
+                    [(ngModel)]="persona.genero"
                     name="radioGenero" 
+                    required
                     id="masculino">
                 <label class="form-check-label" for="masculino">
                   Masculino
@@ -19,7 +22,10 @@
                 <input 
                     class="form-check-input" 
                     type="radio" 
+                    value="F"
+                    [(ngModel)]="persona.genero"
                     name="radioGenero" 
+                    required
                     id="femenino">
                 <label class="form-check-label" for="femenino">
                   Femenino
@@ -31,11 +37,13 @@
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Notificaciones</label>
         <div class="col-sm-9">
-            <div class="form-check form-switch">
+            <div class="form-check form-switch mt-2">
                 <input 
                     class="form-check-input" 
                     type="checkbox" 
                     role="switch" 
+                    [(ngModel)]="persona.notificaciones"
+                    name="notificaciones"
                     id="switchNotificaciones">
                 <label class="form-check-label" for="switchNotificaciones">Quiero recibir notificaciones</label>
             </div>
@@ -50,6 +58,9 @@
                 <input 
                     class="form-check-input" 
                     type="checkbox" 
+                    name="terminos"
+                    [(ngModel)]="terminosYCondiciones"
+                    required
                     id="flexCheckChecked">
                 <label class="form-check-label" for="flexCheckChecked">
                   Aceptar terminos y condiciones
@@ -61,9 +72,27 @@
     <!-- Button -->
     <div class="row">
         <div class="col">
-            <button class="btn btn-primary float-end">
+            <button class="btn btn-primary float-end" [disabled]="miFormulario.invalid">
                 Guardar
             </button>
         </div>
     </div>
 </form>
+
+<h4>Valor del form</h4>
+<pre>{{ miFormulario.value | json }}</pre>
+
+<hr>
+<h4>Persona</h4>
+<pre>{{ persona | json }}</pre>
+
+<hr>
+<h4>Valid</h4>
+<pre>{{ miFormulario.valid }}</pre>
+
+<hr>
+<h4>Terminos</h4>
+<pre>{{ miFormulario.controls['terminos']?.errors | json }}</pre>
+
+<hr>
+<pre>Condiciones</pre>
