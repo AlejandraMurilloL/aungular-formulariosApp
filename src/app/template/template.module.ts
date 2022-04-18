@@ -5,6 +5,7 @@ import { BasicosComponent } from './basicos/basicos.component';
 import { DinamicosComponent } from './dinamicos/dinamicos.component';
 import { SwitchesComponent } from './switches/switches.component';
 import { TemplateRoutingModule } from './template-routing.module';
+import { CustomMinDirective } from './directives/custom-min.directive';
 
 
 
@@ -12,7 +13,8 @@ import { TemplateRoutingModule } from './template-routing.module';
   declarations: [
     BasicosComponent,
     DinamicosComponent,
-    SwitchesComponent
+    SwitchesComponent,
+    CustomMinDirective
   ],
   imports: [
     CommonModule,

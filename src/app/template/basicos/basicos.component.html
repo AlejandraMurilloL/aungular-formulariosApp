@@ -18,9 +18,9 @@
                         required
                         minlength="3">
                     <span 
-                        *ngIf="nombreValido()"
+                        *ngIf="nombreNoValido()"
                         class="form-text text-danger">
-                        Debe ser de 3 letras
+                        El producto debe ser de 3 letras o más
                     </span>
                 </div>
             </div>
@@ -34,7 +34,13 @@
                         ngModel
                         name="precio"
                         placeholder="Precio del producto"
-                        required="">
+                        required
+                        min="0">
+                    <span 
+                        *ngIf="precioNoValido()"
+                        class="form-text text-danger">
+                        El precio debe ser igual o mayor a 0
+                    </span>
                 </div>
             </div>
             <!-- Campo existencias -->
@@ -46,13 +52,16 @@
                         class="form-control"
                         ngModel
                         name="existencias"
-                        placeholder="Existencias del producto">
+                        customMin
+                        [minimo]="0"
+                        placeholder="Existencias del producto"
+                        required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary float-end">
+                    <button type="submit" class="btn btn-primary float-end" [disabled]="miFormulario.invalid">
                         Guardar
                     </button>
                 </div>

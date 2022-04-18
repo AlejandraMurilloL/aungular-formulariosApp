@@ -16,9 +16,14 @@ export class BasicosComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  nombreValido(): boolean{
+  nombreNoValido(): boolean {
     return this.formulario?.controls['producto']?.invalid && 
            this.formulario?.controls['producto']?.touched;
+  }
+
+  precioNoValido(): boolean {
+    return this.formulario?.controls['precio']?.value < 0 && 
+           this.formulario?.controls['precio']?.touched;
   }
 
   //guardar(formulario: NgForm): void {
