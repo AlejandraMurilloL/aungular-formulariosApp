@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormGroupName, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-basicos',
@@ -6,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class BasicosComponent implements OnInit {
+export class BasicosComponent {
+
+  miFormulario: FormGroup = new FormGroup({
+    name: new FormControl('Lapiz')
+  });
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
