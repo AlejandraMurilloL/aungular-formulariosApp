@@ -13,4 +13,11 @@ export class DinamicosComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  agregarFav(): void {
+
+  }
+
+  guardar(): void {
+    
+  }
 }

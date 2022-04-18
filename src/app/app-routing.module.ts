@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveModule } from './reactive/reactive.module';
 
 const routes: Routes = [
   {
@@ -8,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'reactive',
-    loadChildren: () => import('./template/template.module').then( m => m.TemplateModule)
+    loadChildren: () => import('./reactive/reactive.module').then( m => m.ReactiveModule)
   },
   {
     path: '**',
