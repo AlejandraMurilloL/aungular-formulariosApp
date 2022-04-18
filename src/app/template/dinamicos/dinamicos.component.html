@@ -30,9 +30,12 @@
                 <input 
                     class="form-control"
                     placeholder="Agregar favorito"
+                    [(ngModel)]="nuevoFav"
+                    name="nuevoFav"
+                    (keyup.enter)="agregarFav()"
                     type="text">
 
-                <button class="btn btn-outline-primary" type="button">
+                <button class="btn btn-outline-primary" type="button" (click)="agregarFav()">
                     Agregar
                 </button>
             </div>
