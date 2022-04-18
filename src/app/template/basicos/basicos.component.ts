@@ -10,6 +10,12 @@ import { NgForm } from '@angular/forms';
 export class BasicosComponent implements OnInit {
 
   @ViewChild('miFormulario') formulario!: NgForm;
+  
+  initForm = {
+    producto: '',
+    precio: 0,
+    existencias: 10
+  }
 
   constructor() { }
 
@@ -28,6 +34,10 @@ export class BasicosComponent implements OnInit {
 
   //guardar(formulario: NgForm): void {
   guardar(): void {
-    console.log('%cbasicos.component.ts line:18 formulario', 'color: #007acc;', this.formulario);
+    console.log("Posteo Exitoso");
+    this.formulario.resetForm({
+      precio: 0,
+      existencias: 0
+    });
   }
 }
