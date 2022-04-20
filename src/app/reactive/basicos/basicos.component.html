@@ -12,7 +12,7 @@
                     <input 
                         type="text"
                         class="form-control"
-                        formControlName="name"
+                        formControlName="nombre"
                         placeholder="Nombre del producto">
                     <span 
                         class="form-text text-danger">
@@ -27,6 +27,7 @@
                     <input 
                         type="number"
                         class="form-control"
+                        formControlName="precio"
                         placeholder="Precio del producto">
                     <span 
                         class="form-text text-danger">
@@ -42,13 +43,14 @@
                         type="number"
                         class="form-control"
                         name="existencias"
+                        formControlName="existencias"
                         placeholder="Existencias del producto">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary float-end">
+                    <button type="submit" class="btn btn-primary float-end" [disabled]="miFormulario.invalid">
                         Guardar
                     </button>
                 </div>
