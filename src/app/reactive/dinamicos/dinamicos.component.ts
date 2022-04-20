@@ -12,8 +12,8 @@ export class DinamicosComponent implements OnInit {
   miFormulario: FormGroup = this.formBuilder.group({
     nombre: ['', [Validators.required, Validators.minLength(3)]],
     favoritos: this.formBuilder.array([
-      ['Harry Potter'],
-      ['Titanic']
+      ['Harry Potter', Validators.required],
+      ['Titanic', Validators.required]
     ], Validators.required)
   });
 
@@ -50,5 +50,9 @@ export class DinamicosComponent implements OnInit {
     }
 
     console.log(this.miFormulario.value);
+  }
+
+  borrar(favIndex: number): void {
+    this.favoritos.removeAt(favIndex);
   }
 }
