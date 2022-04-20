@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dinamicos',
@@ -8,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DinamicosComponent implements OnInit {
 
-  constructor() { }
+  miFormulario: FormGroup = this.formBuilder.group({
+    nombre: ['', [Validators.required, Validators.minLength(3)]],
+  })
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+  }
+
+  campoInvalido(campo: string) {
+    return this.miFormulario.controls[campo].touched && this.miFormulario.controls[campo].errors;
   }
 
   agregarFav(): void {
@@ -18,6 +27,12 @@ export class DinamicosComponent implements OnInit {
   }
 
   guardar(): void {
-    
+    if (this.miFormulario.invalid) 
+    {
+      this.miFormulario.markAllAsTouched();
+      return;
+    }
+
+    console.log(this.miFormulario.value);
   }
 }
