@@ -39,6 +39,18 @@ export class RegisterComponent implements OnInit {
     return this.miFormulario.get(campo)?.invalid && this.miFormulario.get(campo)?.touched;
   }
 
+  emailRequired(): boolean | undefined {
+    return this.miFormulario.get('email')?.getError('required') && this.miFormulario.get('email')?.touched;
+  } 
+
+  emailPattern(): boolean | undefined {
+    return this.miFormulario.get('email')?.getError('pattern') && this.miFormulario.get('email')?.touched;
+  } 
+
+  emailExistente(): boolean | undefined {
+    return this.miFormulario.get('email')?.getError('emailYaExiste') && this.miFormulario.get('email')?.touched;
+  } 
+
   doSubmit(): void {
     console.log(this.miFormulario.value);
     this.miFormulario.markAllAsTouched();
