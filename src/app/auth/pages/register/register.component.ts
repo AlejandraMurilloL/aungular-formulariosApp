@@ -10,7 +10,6 @@ import { EmailValidatorService } from '../../../shared/validators/email-validato
   ]
 })
 export class RegisterComponent implements OnInit {
-
   miFormulario: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.pattern(this.validatorService.nombreApellidoPettern)]],
     email: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)], [this.emailValidator]],
@@ -20,6 +19,24 @@ export class RegisterComponent implements OnInit {
   }, {
     validators: [this.validatorService.camposIguales('password', 'passwordConfirm')]
   });
+
+  get emailErrorMsg(): string {
+    const email = this.miFormulario.get('email');
+
+    if (email?.getError('required')){
+      return 'El email es un dato obligatorio';
+    }
+
+    if(email?.getError('pattern')) {
+      return 'El email ingresado no tiene un formato correcto';
+    }
+
+    if(email?.getError('emailYaExiste')){
+      return 'El email ingresado ya está registrado';
+    }
+
+    return '';
+  }
 
   constructor(private fb: FormBuilder, 
               private validatorService: ValidatorService,
@@ -38,18 +55,6 @@ export class RegisterComponent implements OnInit {
   campoInvalido(campo: string): boolean | undefined {
     return this.miFormulario.get(campo)?.invalid && this.miFormulario.get(campo)?.touched;
   }
-
-  emailRequired(): boolean | undefined {
-    return this.miFormulario.get('email')?.getError('required') && this.miFormulario.get('email')?.touched;
-  } 
-
-  emailPattern(): boolean | undefined {
-    return this.miFormulario.get('email')?.getError('pattern') && this.miFormulario.get('email')?.touched;
-  } 
-
-  emailExistente(): boolean | undefined {
-    return this.miFormulario.get('email')?.getError('emailYaExiste') && this.miFormulario.get('email')?.touched;
-  } 
 
   doSubmit(): void {
     console.log(this.miFormulario.value);
