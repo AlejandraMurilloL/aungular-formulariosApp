@@ -14,6 +14,10 @@ export class RegisterComponent implements OnInit {
     nombre: ['', [Validators.required, Validators.pattern(this.validatorService.nombreApellidoPettern)]],
     email: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)]],
     username: ['', [Validators.required, this.validatorService.noPuedeSerStrider]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    passwordConfirm: ['', [Validators.required]],
+  }, {
+    validators: [this.validatorService.camposIguales('password', 'passwordConfirm')]
   });
 
   constructor(private fb: FormBuilder, 
