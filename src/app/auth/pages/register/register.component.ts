@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { emailPattern, nombreApellidoPettern, noPuedeSerStrider } from 'src/app/shared/validators/validaciones';
 
 @Component({
   selector: 'app-register',
@@ -9,26 +10,10 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 })
 export class RegisterComponent implements OnInit {
 
-  // TODO Temporal
-  nombreApellidoPettern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
-  emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
-
-  noPuedeSerStrider(control: FormControl) {
-    const valor = control.value?.trim().toLowerCase();
-    if (valor === 'strider') {
-      return {
-        noStrider: true
-      }
-    }
-
-    return null;
-  }
-
-
   miFormulario: FormGroup = this.fb.group({
-    nombre: ['', [Validators.required, Validators.pattern(this.nombreApellidoPettern)]],
-    email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-    username: ['', [Validators.required, this.noPuedeSerStrider]],
+    nombre: ['', [Validators.required, Validators.pattern(nombreApellidoPettern)]],
+    email: ['', [Validators.required, Validators.pattern(emailPattern)]],
+    username: ['', [Validators.required, noPuedeSerStrider]],
   });
 
   constructor(private fb: FormBuilder) { }
@@ -47,7 +32,6 @@ export class RegisterComponent implements OnInit {
 
   doSubmit(): void {
     console.log(this.miFormulario.value);
-
     this.miFormulario.markAllAsTouched();
   }
 
